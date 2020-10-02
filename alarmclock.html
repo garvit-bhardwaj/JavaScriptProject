@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlarmClock</title>
+    <link rel="stylesheet" href="styleclock.css">
+    <link rel="icon" type="image/png" href="img/alarmicon.png">
+</head>
+<body>
+
+    <!--Add shake-horizontal class to clock and clockcenter to make clock start shaking-->
+    <div class="clockcenter"></div>
+    <div class="clock">
+            <div class="hr hand" id="hr"></div>
+            <div class="mn hand" id="mn"></div>
+            <div class="sc hand" id="sc"></div>
+    </div>
+    <script type="text/javascript">
+        const deg=6;
+        const hr=document.getElementById("hr");
+        const mn=document.getElementById("mn");
+        const sc=document.getElementById("sc");
+        setInterval(()=>{
+            let day= new Date();
+            let hh=day.getHours()*30;
+            let mm=day.getMinutes()*deg;
+            let ss=day.getSeconds()*deg;
+            hr.style.transform= `rotateZ(${hh+(mm/12)}deg)`;
+            mn.style.transform= `rotateZ(${mm}deg)`;
+            sc.style.transform= `rotateZ(${ss}deg)`;
+            //console.log("hey");
+        })
+    </script>
+</body>
+</html>
