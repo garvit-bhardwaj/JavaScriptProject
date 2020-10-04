@@ -8,7 +8,8 @@
     <link rel="icon" type="image/png" href="img/alarmicon.png">
 </head>
 <body>
-
+    <div id="setalarm"><button id="backtoclock" class="shake-vertical">Back</button></div>
+    <button id="set" class="shake-vertical">Set Alarm</button>
     <!--Add shake-horizontal class to clock and clockcenter to make clock start shaking-->
     <div class="clockcenter"></div>
     <div class="clock">
@@ -26,11 +27,63 @@
             let hh=day.getHours()*30;
             let mm=day.getMinutes()*deg;
             let ss=day.getSeconds()*deg;
-            hr.style.transform= `rotateZ(${hh+(mm/12)}deg)`;
-            mn.style.transform= `rotateZ(${mm}deg)`;
-            sc.style.transform= `rotateZ(${ss}deg)`;
+            hr.style.transform= `translateX(-50%) rotateZ(${hh+(mm/12)}deg)`;
+            mn.style.transform= `translateX(-50%) rotateZ(${mm}deg)`;
+            sc.style.transform= `translateX(-50%) rotateZ(${ss}deg) `;
             //console.log("hey");
         })
+        document.getElementById("set").addEventListener("mouseover",startvib);
+        document.getElementById("set").addEventListener("mouseout",stopvib);
+        document.getElementById("set").addEventListener("click",jello);
+        function startvib()
+        {
+            document.getElementById("set").classList.add("vibrate-3");
+        }
+        function stopvib()
+        {
+            document.getElementById("set").classList.remove("vibrate-3");
+        }
+        function jello()
+        {
+            document.getElementById("set").classList.add("jello-horizontal");
+            setTimeout(gotoalarm,600);
+        }
+        function gotoalarm()
+        {
+            document.getElementById("set").classList.remove("jello-horizontal");
+            document.getElementById("setalarm").style.borderBottomRightRadius="50%";
+            document.getElementById("setalarm").style.borderTopRightRadius="50%";
+            setTimeout(correctlook,150);
+            document.getElementById("setalarm").style.left="0";
+            document.getElementById("setalarm").style.top="0";
+        }
+        function correctlook()
+        {
+            document.getElementById("setalarm").style.borderBottomRightRadius="0%";
+            document.getElementById("setalarm").style.borderTopRightRadius="0%";
+        }
+        document.getElementById("backtoclock").addEventListener("mouseover",startvib1);
+        document.getElementById("backtoclock").addEventListener("mouseout",stopvib1);
+        document.getElementById("backtoclock").addEventListener("click",jello1);
+        function startvib1()
+        {
+            document.getElementById("backtoclock").classList.add("vibrate-3");
+        }
+        function stopvib1()
+        {
+            document.getElementById("backtoclock").classList.remove("vibrate-3");
+        }
+        function jello1()
+        {
+            document.getElementById("backtoclock").classList.add("jello-horizontal");
+            setTimeout(gotoclock,600);
+        }
+        function gotoclock()
+        {
+            document.getElementById("backtoclock").classList.remove("jello-horizontal");
+            document.getElementById("setalarm").style.left="-100%";
+            document.getElementById("setalarm").style.top="-100vh";
+        }
     </script>
 </body>
 </html>
