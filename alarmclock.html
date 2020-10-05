@@ -8,6 +8,7 @@
     <link rel="icon" type="image/png" href="img/alarmicon.png">
 </head>
 <body>
+    <div class="msg" id="msg">The Alarm Has been set!</div>
     <button id="stop" class="pulsate-bck" onclick="stopalarm()">Stop Alarm</button>
     <button id="snooze"class="pulsate-bck" onclick="snoozealarm()">Snooze Alarm</button>
     <div id="setalarm"><button id="backtoclock" class="shake-vertical">Back</button>
@@ -15,6 +16,14 @@
             <input type="time" id="alarmtime">
             <div id="alarmset"></div>
             <button id="setbtn">Set Alarm</button>
+        </div>
+        <div class="sounds">
+            <p>Alarm Sounds</p>
+            <ul>
+                <li id="audio1">Soft</li>
+                <li id="audio2">Trap</li>
+                <li id="audio3">Melodic</li>
+            </ul>
         </div>
     </div>
     <button id="set" class="shake-vertical">Set Alarm</button>
@@ -26,7 +35,56 @@
             <div class="sc hand" id="sc"></div>
     </div>
     <script type="text/javascript">
-        var music= new Audio('gamemusic.mp3');
+        var music1,music2,music3;
+        var music= new Audio();
+        music.addEventListener("ended",function(){
+            this.currentTime=0;
+            this.play();
+        });
+        checkaudio();
+        function checkaudio()
+        {
+            if(localStorage.getItem("audionum")===null)
+        {
+            document.getElementById("audio1").style.background="rgba(150,212,29,1)";
+            document.getElementById("audio1").style.boxShadow="4px 4px 6px #00000060";
+            document.getElementById("audio2").style.background="";
+            document.getElementById("audio2").style.boxShadow="";
+            document.getElementById("audio3").style.background="";
+            document.getElementById("audio3").style.boxShadow="";
+            music.src="gamemusic.mp3";
+        }
+        else if(localStorage.getItem("audionum")==="1")
+        {
+            document.getElementById("audio1").style.background="rgba(150,212,29,1)";
+            document.getElementById("audio1").style.boxShadow="4px 4px 6px #00000060";
+            document.getElementById("audio2").style.background="";
+            document.getElementById("audio2").style.boxShadow="";
+            document.getElementById("audio3").style.background="";
+            document.getElementById("audio3").style.boxShadow="";
+            music.src="gamemusic.mp3";   
+        }
+        else if(localStorage.getItem("audionum")==="2")
+        {
+            document.getElementById("audio1").style.background="";
+            document.getElementById("audio1").style.boxShadow="";
+            document.getElementById("audio2").style.background="rgba(150,212,29,1)";
+            document.getElementById("audio2").style.boxShadow="4px 4px 6px #00000060";
+            document.getElementById("audio3").style.background="";
+            document.getElementById("audio3").style.boxShadow="";
+            music.src="sound1.mp3";   
+        }
+        else
+        {
+            document.getElementById("audio1").style.background="";
+            document.getElementById("audio1").style.boxShadow="";
+            document.getElementById("audio2").style.background="";
+            document.getElementById("audio2").style.boxShadow="4px 4px 6px #00000060";
+            document.getElementById("audio3").style.background="rgba(150,212,29,1)";
+            document.getElementById("audio3").style.boxShadow="4px 4px 6px #00000060";
+            music.src="sound2.mp3";   
+        }
+        }
         const deg=6;
         const hr=document.getElementById("hr");
         const mn=document.getElementById("mn");
@@ -65,6 +123,10 @@
             setTimeout(correctlook,200);
             document.getElementById("setalarm").style.left="0";
             document.getElementById("setalarm").style.top="0";
+            if(localStorage.getItem("alarmtime")!==null)
+            {
+                document.getElementById("msg").style.display="block";
+            }
         }
         function correctlook()
         {
@@ -95,6 +157,7 @@
             setTimeout(correctlook,400);
             document.getElementById("setalarm").style.left="-100%";
             document.getElementById("setalarm").style.top="-100vh";
+            document.getElementById("msg").style.display="none";
         }
 
         if(localStorage.getItem("alarmtime")==null)
@@ -103,13 +166,14 @@
         }
         else
         {
-            setInterval(showAlarm,10000);
+            var hey=setInterval(showAlarm,10000);
             showAlarm();
         }
         function setAlarm()
         {
             document.getElementById("stop").style.display="none";
             document.getElementById("snooze").style.display="none";
+            document.getElementById("msg").style.display="none";
             document.getElementById("alarmtime").style.display="inline-block";
             document.getElementById("alarmset").style.display="none";
             document.getElementById("setbtn").innerText="Set Alarm";
@@ -119,6 +183,8 @@
         function showAlarm()
         {
            // console.log("hey");
+            if(document.getElementById("setalarm").style.left==="0")
+            document.getElementById("msg").style.display="block";
             document.getElementById("alarmtime").style.display="none";
             document.getElementById("alarmset").style.display="inline-block";
             document.getElementById("alarmset").innerText=localStorage.getItem("alarmtime");
@@ -126,6 +192,7 @@
             document.getElementById("setbtn").removeEventListener("click",set);
             document.getElementById("setbtn").addEventListener("click",remove);
             var time=localStorage.getItem("alarmtime");
+            hey=setInterval(showAlarm,10000);
             var alarmhours= time.substring(0,2);
            var alarmmin=time.substring(3,5);
            var current= new Date();
@@ -138,11 +205,13 @@
         function remove()
         {
             localStorage.removeItem("alarmtime");
-            window.location.replace("alarmclock.html");
+            clearInterval(hey);
+            setAlarm();
         }
         var timeleft=0;
         function set()
         {
+           document.getElementById("msg").style.display="none";
            var time=document.getElementById("alarmtime").value;
            var time1=document.getElementById("alarmtime").valueAsNumber;
            if(isNaN(time1))
@@ -176,8 +245,8 @@
         }
         function stopalarm()
         {
-            document.getElementById("clock").classList.add("shake-horizontal");
-            document.getElementById("clockcenter").classList.add("shake-horizontal");
+            document.getElementById("clock").classList.remove("shake-horizontal");
+            document.getElementById("clockcenter").classList.remove("shake-horizontal");
             //console.log("alarm is stopped");
             document.getElementById("stop").style.display="none";
             document.getElementById("snooze").style.display="none";
@@ -190,6 +259,69 @@
             document.getElementById("snooze").style.display="none";
             stopalarm();
             setTimeout(startalarm,300000);
+        }
+        document.getElementById("audio1").addEventListener("click",setaud1);
+        document.getElementById("audio1").addEventListener("mouseover",play1);
+        document.getElementById("audio1").addEventListener("mouseout",stop1);
+        function setaud1()
+        {
+            localStorage.setItem("audionum","1");
+            checkaudio();
+        }
+        function play1()
+        {
+            music1=new Audio('gamemusic.mp3');
+            music1.addEventListener("ended",function(){
+            this.currentTime=0;
+            this.play();
+        });
+            music1.play();
+        }
+        function stop1(){
+            music1.pause();
+            music1.currentTime=0;
+        }
+        document.getElementById("audio2").addEventListener("click",setaud2);
+        document.getElementById("audio2").addEventListener("mouseover",play2);
+        document.getElementById("audio2").addEventListener("mouseout",stop2);
+        function setaud2()
+        {
+            localStorage.setItem("audionum","2");
+            checkaudio();
+        }
+        function play2()
+        {
+            music2=new Audio('sound1.mp3');
+            music2.addEventListener("ended",function(){
+            this.currentTime=0;
+            this.play();
+        });
+            music2.play();
+        }
+        function stop2(){
+            music2.pause();
+            music2.currentTime=0;
+        }
+        document.getElementById("audio3").addEventListener("click",setaud3);
+        document.getElementById("audio3").addEventListener("mouseover",play3);
+        document.getElementById("audio3").addEventListener("mouseout",stop3);
+        function setaud3()
+        {
+            localStorage.setItem("audionum","3");
+            checkaudio();
+        }
+        function play3()
+        {
+            music3=new Audio('sound2.mp3');
+            music3.addEventListener("ended",function(){
+            this.currentTime=0;
+            this.play();
+        });
+            music3.play();
+        }
+        function stop3(){
+            music3.pause();
+            music3.currentTime=0;
         }
     </script>
 </body>
