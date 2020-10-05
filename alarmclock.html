@@ -8,7 +8,15 @@
     <link rel="icon" type="image/png" href="img/alarmicon.png">
 </head>
 <body>
-    <div id="setalarm"><button id="backtoclock" class="shake-vertical">Back</button></div>
+    <button id="stop" class="pulsate-bck">Stop Alarm</button>
+    <button id="snooze"class="pulsate-bck">Snooze Alarm</button>
+    <div id="setalarm"><button id="backtoclock" class="shake-vertical">Back</button>
+        <div class="setcontainer">
+            <input type="time" id="alarmtime">
+            <div id="alarmset"></div>
+            <button id="setbtn">Set Alarm</button>
+        </div>
+    </div>
     <button id="set" class="shake-vertical">Set Alarm</button>
     <!--Add shake-horizontal class to clock and clockcenter to make clock start shaking-->
     <div class="clockcenter"></div>
@@ -18,6 +26,7 @@
             <div class="sc hand" id="sc"></div>
     </div>
     <script type="text/javascript">
+        var music= new Audio('gamemusic.mp3');
         const deg=6;
         const hr=document.getElementById("hr");
         const mn=document.getElementById("mn");
@@ -53,7 +62,7 @@
             document.getElementById("set").classList.remove("jello-horizontal");
             document.getElementById("setalarm").style.borderBottomRightRadius="50%";
             document.getElementById("setalarm").style.borderTopRightRadius="50%";
-            setTimeout(correctlook,150);
+            setTimeout(correctlook,200);
             document.getElementById("setalarm").style.left="0";
             document.getElementById("setalarm").style.top="0";
         }
@@ -81,8 +90,95 @@
         function gotoclock()
         {
             document.getElementById("backtoclock").classList.remove("jello-horizontal");
+            document.getElementById("setalarm").style.borderBottomRightRadius="50%";
+            document.getElementById("setalarm").style.borderTopRightRadius="50%";
+            setTimeout(correctlook,400);
             document.getElementById("setalarm").style.left="-100%";
             document.getElementById("setalarm").style.top="-100vh";
+        }
+
+        if(localStorage.getItem("alarmtime")==null)
+        {
+            setAlarm();
+        }
+        else
+        {
+            showAlarm();
+        }
+        function setAlarm()
+        {
+            document.getElementById("stop").style.display="none";
+            document.getElementById("snooze").style.display="none";
+            document.getElementById("alarmtime").style.display="inline-block";
+            document.getElementById("alarmset").style.display="none";
+            document.getElementById("setbtn").innerText="Set Alarm";
+            document.getElementById("setbtn").removeEventListener("click",remove);
+            document.getElementById("setbtn").addEventListener("click",set);
+        }
+        function showAlarm()
+        {
+            document.getElementById("alarmtime").style.display="none";
+            document.getElementById("alarmset").style.display="inline-block";
+            document.getElementById("alarmset").innerText=localStorage.getItem("alarmtime");
+            document.getElementById("setbtn").innerText="Clear Alarm";
+            document.getElementById("setbtn").removeEventListener("click",set);
+            document.getElementById("setbtn").addEventListener("click",remove);
+            var time=localStorage.getItem("alarmtime");
+            var alarmhours= time.substring(0,2);
+           var alarmmin=time.substring(3,5);
+           var current= new Date();
+           var alarmtime=new Date(current.getUTCFullYear(),current.getUTCMonth(),current.getUTCDate(),alarmhours,alarmmin,"00");
+           var timeleft= alarmtime.getTime()- current.getTime();
+           // console.log(timeleft);
+           if(timeleft>0)
+           setTimeout(startalarm,timeleft);
+           else if(timeleft>-120000)
+           startalarm();
+        }
+        function remove()
+        {
+            localStorage.removeItem("alarmtime");
+            window.location.replace("alarmclock.html");
+        }
+        var timeleft=0;
+        function set()
+        {
+           var time=document.getElementById("alarmtime").value;
+           var time1=document.getElementById("alarmtime").valueAsNumber;
+           if(isNaN(time1))
+           {
+               alert("Invalid date");
+               return;
+           }
+           var alarmhours= time.substring(0,2);
+           var alarmmin=time.substring(3,5);
+           var current= new Date();
+           var alarmtime=new Date(current.getUTCFullYear(),current.getUTCMonth(),current.getUTCDate(),alarmhours,alarmmin,"00");
+           //console.log(alarmtime);
+           localStorage.setItem("alarmtime",time);
+           //console.log(current);
+           timeleft= alarmtime.getTime()- current.getTime();
+           //console.log(timeleft);
+           setTimeout(startalarm,timeleft);
+           showAlarm();
+        }
+        function startalarm()
+        {
+            //console.log("alarm has started");
+            document.getElementById("stop").style.display="block";
+            document.getElementById("snooze").style.display="block";
+            setTimeout(function(){
+                music.play();
+            },150);
+            setTimeout(stopalarm,120000);
+        }
+        function stopalarm()
+        {
+            //console.log("alarm is stopped");
+            document.getElementById("stop").style.display="none";
+            document.getElementById("snooze").style.display="none";
+            music.pause();
+            music.currentTime=0;
         }
     </script>
 </body>
