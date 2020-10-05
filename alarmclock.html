@@ -19,8 +19,8 @@
     </div>
     <button id="set" class="shake-vertical">Set Alarm</button>
     <!--Add shake-horizontal class to clock and clockcenter to make clock start shaking-->
-    <div class="clockcenter"></div>
-    <div class="clock">
+    <div class="clockcenter" id="clockcenter"></div>
+    <div class="clock" id="clock">
             <div class="hr hand" id="hr"></div>
             <div class="mn hand" id="mn"></div>
             <div class="sc hand" id="sc"></div>
@@ -103,6 +103,7 @@
         }
         else
         {
+            setInterval(showAlarm,10000);
             showAlarm();
         }
         function setAlarm()
@@ -117,6 +118,7 @@
         }
         function showAlarm()
         {
+           // console.log("hey");
             document.getElementById("alarmtime").style.display="none";
             document.getElementById("alarmset").style.display="inline-block";
             document.getElementById("alarmset").innerText=localStorage.getItem("alarmtime");
@@ -130,10 +132,8 @@
            var alarmtime=new Date(current.getUTCFullYear(),current.getUTCMonth(),current.getUTCDate(),alarmhours,alarmmin,"00");
            var timeleft= alarmtime.getTime()- current.getTime();
            // console.log(timeleft);
-           if(timeleft>0)
+           if(timeleft>=0)
            setTimeout(startalarm,timeleft);
-           else if(timeleft>-120000)
-           startalarm();
         }
         function remove()
         {
@@ -159,7 +159,7 @@
            //console.log(current);
            timeleft= alarmtime.getTime()- current.getTime();
            //console.log(timeleft);
-           setTimeout(startalarm,timeleft);
+           //setTimeout(startalarm,timeleft);
            showAlarm();
         }
         function startalarm()
@@ -167,6 +167,8 @@
             //console.log("alarm has started");
             document.getElementById("stop").style.display="block";
             document.getElementById("snooze").style.display="block";
+            document.getElementById("clock").classList.add("shake-horizontal");
+            document.getElementById("clockcenter").classList.add("shake-horizontal");
             setTimeout(function(){
                 music.play();
             },150);
@@ -174,6 +176,8 @@
         }
         function stopalarm()
         {
+            document.getElementById("clock").classList.add("shake-horizontal");
+            document.getElementById("clockcenter").classList.add("shake-horizontal");
             //console.log("alarm is stopped");
             document.getElementById("stop").style.display="none";
             document.getElementById("snooze").style.display="none";
