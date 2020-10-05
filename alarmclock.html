@@ -8,8 +8,8 @@
     <link rel="icon" type="image/png" href="img/alarmicon.png">
 </head>
 <body>
-    <button id="stop" class="pulsate-bck">Stop Alarm</button>
-    <button id="snooze"class="pulsate-bck">Snooze Alarm</button>
+    <button id="stop" class="pulsate-bck" onclick="stopalarm()">Stop Alarm</button>
+    <button id="snooze"class="pulsate-bck" onclick="snoozealarm()">Snooze Alarm</button>
     <div id="setalarm"><button id="backtoclock" class="shake-vertical">Back</button>
         <div class="setcontainer">
             <input type="time" id="alarmtime">
@@ -179,6 +179,13 @@
             document.getElementById("snooze").style.display="none";
             music.pause();
             music.currentTime=0;
+        }
+        function snoozealarm()
+        {
+            document.getElementById("stop").style.display="none";
+            document.getElementById("snooze").style.display="none";
+            stopalarm();
+            setTimeout(startalarm,300000);
         }
     </script>
 </body>
