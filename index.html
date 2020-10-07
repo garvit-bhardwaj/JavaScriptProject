@@ -8,11 +8,15 @@
 </head>
 <body>
     <div class="alarm" onclick="gotoalarm()"><img src="img/alarmicon.png" class="alarmicon"><h3 id="alarmcaption">Alarm Clock</h3></div>
-    <div class="list"><img src="img/todolist.png" class="todolist"><h3 id="todolist">To-do List</h3></div>
+    <div class="list" onclick="gotolist()"><img src="img/todolist.png" class="todolist"><h3 id="todolist">To-do List</h3></div>
     <script>
         function gotoalarm()
         {
             window.location.replace('alarmclock.html');
+        }
+        function gotolist()
+        {
+            window.location.replace('todolist.html');
         }
     </script>
 </body>

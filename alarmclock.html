@@ -79,7 +79,7 @@
             document.getElementById("audio1").style.background="";
             document.getElementById("audio1").style.boxShadow="";
             document.getElementById("audio2").style.background="";
-            document.getElementById("audio2").style.boxShadow="4px 4px 6px #00000060";
+            document.getElementById("audio2").style.boxShadow="";
             document.getElementById("audio3").style.background="rgba(150,212,29,1)";
             document.getElementById("audio3").style.boxShadow="4px 4px 6px #00000060";
             music.src="sound2.mp3";   
@@ -166,7 +166,6 @@
         }
         else
         {
-            var hey=setInterval(showAlarm,10000);
             showAlarm();
         }
         function setAlarm()
@@ -182,8 +181,8 @@
         }
         function showAlarm()
         {
-           // console.log("hey");
-            if(document.getElementById("setalarm").style.left==="0")
+           // console.log(document.getElementById("setalarm").style.left);
+            if(document.getElementById("setalarm").style.left==="0px")
             document.getElementById("msg").style.display="block";
             document.getElementById("alarmtime").style.display="none";
             document.getElementById("alarmset").style.display="inline-block";
@@ -192,7 +191,6 @@
             document.getElementById("setbtn").removeEventListener("click",set);
             document.getElementById("setbtn").addEventListener("click",remove);
             var time=localStorage.getItem("alarmtime");
-            hey=setInterval(showAlarm,10000);
             var alarmhours= time.substring(0,2);
            var alarmmin=time.substring(3,5);
            var current= new Date();
@@ -205,7 +203,6 @@
         function remove()
         {
             localStorage.removeItem("alarmtime");
-            clearInterval(hey);
             setAlarm();
         }
         var timeleft=0;

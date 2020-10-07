@@ -556,7 +556,7 @@ input{
   transform:translate(-55%,-50%);
   z-index:1000000;
   color:#40963b;
-  font-size:150%;
+  font-size:2vw;
   letter-spacing:3px;
   font-weight:bold;
   font-family:Helvetica, sans-serif;
@@ -568,13 +568,15 @@ input{
   bottom:10px;
   left:50%;
   transform:translateX(-50%);
-  background:#ababab;
+  background:#ffbfbf;
   padding:20px;
   padding-top:10px;
-  padding-bottom:5px;
+  padding-bottom:10px;
   font-size:2vw;
   font-family:Helvetica, sans-serif;
   border-radius:8px;
+  border:5px solid #fff;
+  box-shadow:10px 10px 10px #00000050;
 }
 
 ul{
@@ -595,6 +597,7 @@ li{
   border:1px solid #000;
   transition:0.4s;
   cursor:pointer;
+  background:#fff;
 }
 
 li:hover{
@@ -609,6 +612,9 @@ li:hover{
   .sounds{
     font-size:3vw;
   }
+  .msg{
+    font-size:3vw;
+  }
 } 
 
 @media (max-width:500px)
@@ -619,4 +625,25 @@ li:hover{
   .sounds{
     font-size:4vw;
   }
+  .msg{
+    font-size:4vw;
+  }
 } 
+
+@media (min-height:1020px)
+{
+  li{
+    margin:15% 0 15% 0;
+  }
+  .sounds{
+    font-size:5vw;
+  }
+  .msg{
+    font-size:5vw;
+  }
+  input,#alarmset{
+    width:200px;
+    height:50px;
+    font-size:3vw;
+  }
+}
