@@ -147,6 +147,6 @@ function remove(task)
 function deleteall()
 {
     localStorage.removeItem("tasks");
-    window.location.replace("todolist.html");
+   // window.location.replace("todolist.html");
     getTasks();
 }
