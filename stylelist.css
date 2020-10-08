@@ -17,6 +17,7 @@ h1{
     opacity:.2;
     height:100px;
     overflow:hidden;
+    margin-top:30px;
 }
 form{
     min-height:20vh;
@@ -36,18 +37,23 @@ form input,form button{
 form input{
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+    height:30px;
 }
 form button{
+    padding:0;
+    border-right:2px solid #fff;
     color:#8997d0;
     background:white;
     cursor:pointer;
     transition-duration: 0.3s;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+    height:30px;
 }
 form button:hover{
     background:#8997d0;
     color:white;
+    border:0;
 }
 .tasks{
     background:#fff;
@@ -336,7 +342,7 @@ i{
 #mainmenu{
     position:absolute;
     right:20px;
-    top:20px;
+    top:10px;
     border:2px solid #11111130;
     border-radius:10px;
     background:rgb(233, 29, 29);
