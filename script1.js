@@ -91,6 +91,7 @@ function gotoalarm()
         document.getElementById("msg").style.display="block";
     }
 }
+document.querySelector("body").height=window.availHeight + "px";
 function correctlook()
 {
     document.getElementById("setalarm").style.borderBottomRightRadius="0%";
