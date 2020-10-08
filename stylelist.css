@@ -333,3 +333,25 @@ i{
     margin-left:10px;
     font-weight:600;
 }
+#mainmenu{
+    position:absolute;
+    right:20px;
+    top:20px;
+    border:2px solid #11111130;
+    border-radius:10px;
+    background:rgb(233, 29, 29);
+    font-size:1.2rem;
+    color:white;
+    padding:0.2rem 0.5rem;
+    transition:0.5s;
+    cursor:pointer;
+    outline:none;
+    z-index:100;
+}
+#mainmenu:hover{
+    background:rgb(255, 116, 116);
+    box-shadow:4px 4px 7px #11111140;
+}
+#mainmenu:active{
+    transform:translateY(8px);
+}

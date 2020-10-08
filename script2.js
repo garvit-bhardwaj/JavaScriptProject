@@ -255,3 +255,7 @@ function deleteall()
    // window.location.replace("todolist.html");
     getTasks();
 }
+function mainpage()
+{
+    window.location.replace("index.html");
+}

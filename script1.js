@@ -210,6 +210,8 @@ function stopalarm()
     //console.log("alarm is stopped");
     document.getElementById("stop").style.display="none";
     document.getElementById("snooze").style.display="none";
+    document.getElementById("smallstop").style.display="none";
+    document.getElementById("smallsnooze").style.display="none";
     music.pause();
     music.currentTime=0;
 }
@@ -282,4 +284,8 @@ function play3()
 function stop3(){
     music3.pause();
     music3.currentTime=0;
+}
+function mainpage()
+{
+    window.location.replace("index.html");
 }

@@ -463,10 +463,8 @@ input{
 
 #setbtn,#stop,#snooze{
   padding:10px;
-  padding-top:5px;
   padding-bottom:5px;
   font-size:115%;
-  margin-left:8px;
   border-radius:8px;
   outline:none;
   border:none;
@@ -475,6 +473,29 @@ input{
   cursor:pointer;
   margin-top:10px;
 }
+
+#smallstop,#smallsnooze{
+  border:0;
+  background:#ef3434;
+  display:none;
+  border:1px solid white;
+  border-radius:8px;
+  padding:0.5rem;
+}
+#smallstop{
+  position:absolute;
+  bottom:20px;
+  left:20px;
+}
+#smallsnooze{
+  position:absolute;
+  bottom:20px;
+  right:20px;
+}
+#smallstop:hover , #smallsnooze:hover{
+  padding:0.8rem;
+}
+
 #setbtn:active,#stop:active,#snooze:active{
   background:#8a77bb;
 }
@@ -647,3 +668,37 @@ li:hover{
     font-size:3vw;
   }
 }
+#back{
+  position:absolute;
+  right:20px;
+  top:20px;
+  border:2px solid #11111130;
+  border-radius:10px;
+  background:rgb(233, 29, 29);
+  font-size:1.2rem;
+  color:white;
+  padding:0.2rem 0.5rem;
+  transition:0.5s;
+  cursor:pointer;
+  outline:none;
+}
+#back:hover{
+  background:rgb(255, 116, 116);
+  box-shadow:4px 4px 7px #11111140;
+}
+#back:active{
+  transform:translateY(8px);
+}
+
+/*@media (max-width:680px)
+{
+  #stop{
+    display:none;
+  }
+  #snooze{
+    display:none;
+  }
+  #smallstop,#smallsnooze{
+    display:block;
+  }
+}*/
