@@ -10,6 +10,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="comment" id="comment">
+        <div class="commentheader" id="commentheader"><p id="commentheading"></p>
+        <button class="closewindow" id="closewindow">
+        <i class="fas fa-window-close"></i></button></div>
+        <form id="commentform">
+        <input type="text" class="comm-input" id="comm-input">
+        <button class="commentbtn" type="submit">
+            <i class="fas fa-plus-square"></i>
+        </button>
+        </form>
+        <div class="content" id="content"><p></p></div>
+        <div class="commentfooter"><buton class="edit" id="edit"><i class="fas fa-edit"></i></buton><button class="delcomm" id="delcomm"><i class="fas fa-trash"></i></button></div>
+    </div>
     <h1>To-do List</h1>
     <form action="">
         <input type="text" class="todo-input" placeholder="Enter new task">

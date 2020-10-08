@@ -31,12 +31,19 @@ form input,form button{
     border:none;
     background:#fff;
     outline:none;
+    border-radius:4px;
+}
+form input{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }
 form button{
     color:#8997d0;
     background:white;
     cursor:pointer;
     transition-duration: 0.3s;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 form button:hover{
     background:#8997d0;
@@ -53,7 +60,6 @@ form button:hover{
     position:relative;
     box-shadow:5px 5px 10px #00000060;
     padding-bottom:45px;
-    overflow:auto;
 }
 
 .tasksheader{
@@ -95,7 +101,7 @@ form button:hover{
     transform:translateY(-70vh) rotateZ(360deg);
     opacity:0;
 }
-.check-btn,.del-btn{
+.check-btn,.del-btn,.comm-btn{
     background:#8aa7da;
     border:none;
     padding:1rem;
@@ -118,6 +124,9 @@ i{
     background:rgb(238, 43, 43);
     transform:scale(1);
 }
+.comm-btn{
+    background:rgb(65, 65, 235);
+}
 .check-btn:hover{
     background:rgb(99,255,99);
     box-shadow: 2px 2px 4px #00000070;
@@ -126,7 +135,11 @@ i{
     background:rgb(251,111,111);
     box-shadow: 2px 2px 4px #00000070;
 }
-.check-btn:active,.del-btn:active{
+.comm-btn:hover{
+    background:rgb(142, 142, 248);
+    box-shadow: 2px 2px 4px #00000070;
+}
+.check-btn:active,.del-btn:active,.comm-btn:active{
     padding:0.8rem;
     transform:scale(0.8);
 }
@@ -199,4 +212,124 @@ i{
         padding:0.1rem;
         width:80%;
     }
+}
+
+.comment{
+    position:absolute;
+    width:0;
+    height:0;
+    overflow:hidden;
+    visibility:hidden;
+    opacity:0;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:#fff;
+    z-index:100;
+    border-radius:15px;
+    border:5px solid #555;
+    transition:0.5s;
+    display:flex;
+    justify-content: space-around;
+    flex-direction:column;
+}
+
+.comment input,.comment [type="submit"]{
+    border:1px solid #11111140;
+}
+.comment input{
+    border-right:0;
+    width:60%;
+}
+.comment [type="submit"]{
+    border-left:0;
+}
+
+.commentheader{
+    display:flex;
+    justify-content: space-between;
+}
+.closewindow{
+    background:0;
+    border:none;
+    padding:0.1rem;
+    cursor:pointer;
+    color:#fff;
+    font-size:1.8rem;
+    border-radius:4px;
+    margin:2px;
+    transition:0.4s;
+    outline:none;
+    transform-origin:top-left;
+    order:2;
+}
+.commentheader button{
+    color:red;
+    transition:0.4s;
+}
+.commentheader button:hover{
+    color:rgb(245, 135, 135);
+}
+.commentheader button:active{
+    transform:translateY(2px);
+}
+.content{
+    text-align:center;
+    line-height:1rem;
+    padding-top:50px;
+    min-height:45vh;
+    min-width:80%;
+}
+.content p{
+    font-size: 1.5rem;
+}
+
+@media (max-width:500px)
+{
+    .content p{
+        font-size:4vw;
+    }
+}
+.commentfooter{
+    display:flex;
+    justify-content: space-between;
+}
+
+.edit, .delcomm{
+    background:#8aa7da;
+    border:none;
+    padding:0.5rem;
+    cursor:pointer;
+    color:#fff;
+    font-size:1.4rem;
+    border-radius:4px;
+    margin:2px;
+    transition:0.4s;
+    outline:none;
+}
+.edit{
+    padding-top:0.35rem;
+    padding-bottom:0.35rem;
+    background:rgb(119, 204, 28);
+}
+.delcomm{
+    background:red;
+}
+.edit:hover{
+    background:rgb(114, 255, 114);
+    box-shadow:3px 3px 5px #00000030;
+}
+.delcomm:hover{
+    background:rgb(255, 124, 124);
+    box-shadow:3px 3px 5px #00000030;
+}
+.delcomm:active{
+    transform: translateY(4px);
+}
+.edit:active{
+    background:green;
+}
+.commentheader p{
+    margin-left:10px;
+    font-weight:600;
 }
