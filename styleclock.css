@@ -464,6 +464,7 @@ input{
 #setbtn,#stop,#snooze{
   padding:10px;
   padding-bottom:5px;
+  padding-top:5px;
   font-size:115%;
   border-radius:8px;
   outline:none;
@@ -481,16 +482,18 @@ input{
   border:1px solid white;
   border-radius:8px;
   padding:0.5rem;
+  color:white;
+  z-index:10000000;
 }
 #smallstop{
   position:absolute;
-  bottom:20px;
-  left:20px;
+  bottom:30px;
+  left:30px;
 }
 #smallsnooze{
   position:absolute;
-  bottom:20px;
-  right:20px;
+  bottom:30px;
+  right:30px;
 }
 #smallstop:hover , #smallsnooze:hover{
   padding:0.8rem;
@@ -690,7 +693,9 @@ li:hover{
   transform:translateY(8px);
 }
 
-/*@media (max-width:680px)
+/*
+
+@media (max-width:680px)
 {
   #stop{
     display:none;
@@ -701,4 +706,4 @@ li:hover{
   #smallstop,#smallsnooze{
     display:block;
   }
-}*/
+}    */

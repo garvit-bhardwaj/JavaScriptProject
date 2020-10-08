@@ -194,8 +194,15 @@ function set()
 function startalarm()
 {
     //console.log("alarm has started");
-    document.getElementById("stop").style.display="block";
-    document.getElementById("snooze").style.display="block";
+    if(window.availWidth>750){
+        document.getElementById("stop").style.display="block";
+        document.getElementById("snooze").style.display="block";
+    }
+    else
+    {
+        document.getElementById("smallstop").style.display="block";
+        document.getElementById("smallsnooze").style.display="block";
+    }
     document.getElementById("clock").classList.add("shake-horizontal");
     document.getElementById("clockcenter").classList.add("shake-horizontal");
     setTimeout(function(){
@@ -219,6 +226,8 @@ function snoozealarm()
 {
     document.getElementById("stop").style.display="none";
     document.getElementById("snooze").style.display="none";
+    document.getElementById("smallstop").style.display="none";
+    document.getElementById("smallsnooze").style.display="none";
     stopalarm();
     setTimeout(startalarm,300000);
 }

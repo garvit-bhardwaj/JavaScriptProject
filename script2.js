@@ -64,6 +64,11 @@ function addtask(e){
     e.preventDefault();
     if(input.value==="")
     return;
+    else if(input.value.length>25)
+    {
+        alert("Task heading is too long");
+        return;
+    }
     document.getElementById("msg").style.display="none";
     const tododiv= document.createElement("div");
     tododiv.classList.add("todo");
