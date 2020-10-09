@@ -478,7 +478,7 @@ input{
 #smallstop,#smallsnooze{
   border:0;
   background:#ef3434;
-  display:none;
+  visibility:hidden;
   border:1px solid white;
   border-radius:8px;
   padding:0.5rem;
@@ -496,7 +496,8 @@ input{
   right:30px;
 }
 #smallstop:hover , #smallsnooze:hover{
-  padding:0.8rem;
+  background:rgb(255, 116, 116);
+  box-shadow:4px 4px 7px #11111140;
 }
 
 #setbtn:active,#stop:active,#snooze:active{

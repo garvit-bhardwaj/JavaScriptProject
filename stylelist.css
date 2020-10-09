@@ -17,7 +17,7 @@ h1{
     opacity:.2;
     height:100px;
     overflow:hidden;
-    margin-top:30px;
+    margin-top:50px;
 }
 form{
     min-height:20vh;
@@ -37,7 +37,7 @@ form input,form button{
 form input{
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    height:30px;
+    height:40px;
 }
 form button{
     padding:0;
@@ -48,7 +48,7 @@ form button{
     transition-duration: 0.3s;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    height:30px;
+    height:40px;
 }
 form button:hover{
     background:#8997d0;
@@ -89,7 +89,7 @@ form button:hover{
 .todo{
     margin:0.5rem;
     color:#000;
-    font-size:1.5rem;
+    font-size:2vw;
     display:flex;
     justify-content: space-around;
     align-items: center;
@@ -199,11 +199,17 @@ i{
     .tasks{
         width:80%;
     }
+    .todo{
+        font-size:3.6vw;
+    }
 }
 @media (max-width:500px)
 {
     h1{
         font-size:13vw;
+    }
+    .todo{
+        font-size:3.6vw;
     }
 }
 @media (max-width:400px)
@@ -217,6 +223,9 @@ i{
     form input{
         padding:0.1rem;
         width:80%;
+    }
+    .todo{
+        font-size:3.6vw;
     }
 }
 

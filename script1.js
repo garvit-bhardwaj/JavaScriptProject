@@ -136,6 +136,8 @@ function setAlarm()
 {
     document.getElementById("stop").style.display="none";
     document.getElementById("snooze").style.display="none";
+    document.getElementById("smallstop").style.visibility="hidden";
+    document.getElementById("smallsnooze").style.visibility="hidden";
     document.getElementById("msg").style.display="none";
     document.getElementById("alarmtime").style.display="inline-block";
     document.getElementById("alarmset").style.display="none";
@@ -152,6 +154,10 @@ function showAlarm()
     document.getElementById("alarmset").style.display="inline-block";
     document.getElementById("alarmset").innerText=localStorage.getItem("alarmtime");
     document.getElementById("setbtn").innerText="Clear Alarm";
+    document.getElementById("stop").style.display="none";
+    document.getElementById("snooze").style.display="none";
+    document.getElementById("smallstop").style.visibility="hidden";
+    document.getElementById("smallsnooze").style.visibility="hidden";
     document.getElementById("setbtn").removeEventListener("click",set);
     document.getElementById("setbtn").addEventListener("click",remove);
     var time=localStorage.getItem("alarmtime");
@@ -167,6 +173,7 @@ function showAlarm()
 function remove()
 {
     localStorage.removeItem("alarmtime");
+    stopalarm();
     setAlarm();
 }
 var timeleft=0;
@@ -201,8 +208,8 @@ function startalarm()
     }
     else
     {
-        document.getElementById("smallstop").style.display="block";
-        document.getElementById("smallsnooze").style.display="block";
+        document.getElementById("smallstop").style.visibility="visible";
+        document.getElementById("smallsnooze").style.visibility="visible";
     }
     document.getElementById("clock").classList.add("shake-horizontal");
     document.getElementById("clockcenter").classList.add("shake-horizontal");
@@ -218,8 +225,8 @@ function stopalarm()
     //console.log("alarm is stopped");
     document.getElementById("stop").style.display="none";
     document.getElementById("snooze").style.display="none";
-    document.getElementById("smallstop").style.display="none";
-    document.getElementById("smallsnooze").style.display="none";
+    document.getElementById("smallstop").style.visibility="hidden";
+    document.getElementById("smallsnooze").style.visibility="hidden";
     music.pause();
     music.currentTime=0;
 }
@@ -227,8 +234,8 @@ function snoozealarm()
 {
     document.getElementById("stop").style.display="none";
     document.getElementById("snooze").style.display="none";
-    document.getElementById("smallstop").style.display="none";
-    document.getElementById("smallsnooze").style.display="none";
+    document.getElementById("smallstop").style.visibility="hidden";
+    document.getElementById("smallsnooze").style.visibility="hidden";
     stopalarm();
     setTimeout(startalarm,300000);
 }
