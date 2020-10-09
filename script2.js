@@ -64,7 +64,7 @@ function addtask(e){
     e.preventDefault();
     if(input.value==="")
     return;
-    else if(input.value.length>25)
+    else if(input.value.length>20)
     {
         alert("Task heading is too long");
         return;
@@ -135,7 +135,7 @@ function change(e)
         comment.style.width="80%";
         comment.style.height="80vh";
         comment.style.visibility="visible";
-        comment.style.opacity="1";
+        comment.style.opacity="1"; 
         setTimeout(function(){showcomment(item,null);},500);
     }
 }
