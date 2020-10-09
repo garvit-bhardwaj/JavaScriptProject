@@ -1,3 +1,10 @@
+var info = document.querySelector(".clockcenter").getBoundingClientRect();
+console.log(info);
+
+document.querySelector(".hand").style.bottom="calc(" +  info.bottom + "px - 7.5px";
+
+
+
 var music1,music2,music3;
 var music= new Audio();
 music.addEventListener("ended",function(){
