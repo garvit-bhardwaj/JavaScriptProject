@@ -209,7 +209,8 @@ function set()
 function startalarm()
 {
     //console.log("alarm has started");
-    if(window.availWidth>750){
+    console.log(screen.availWidth);
+    if(screen.availWidth>750){
         document.getElementById("stop").style.display="block";
         document.getElementById("snooze").style.display="block";
     }
