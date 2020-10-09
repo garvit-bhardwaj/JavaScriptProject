@@ -42,10 +42,8 @@ body{
 
 .hand{
     position:absolute;
-    bottom:50%;
-    left:50%;
+    transform:translateY(-50%);
     transform-origin: bottom;
-    transform:translateX(-50%);
     box-shadow: 2px 0 3px #00000030;
 }
 

@@ -1,8 +1,8 @@
-var info = document.querySelector(".clockcenter").getBoundingClientRect();
+/*var info = document.querySelector(".clockcenter").getBoundingClientRect();
 console.log(info);
 
 document.querySelector(".hand").style.bottom="calc(" +  info.bottom + "px - 7.5px";
-
+*/
 
 
 var music1,music2,music3;
@@ -64,9 +64,9 @@ setInterval(()=>{
     let hh=day.getHours()*30;
     let mm=day.getMinutes()*deg;
     let ss=day.getSeconds()*deg;
-    hr.style.transform= `translateX(-50%) rotateZ(${hh+(mm/12)}deg)`;
-    mn.style.transform= `translateX(-50%) rotateZ(${mm}deg)`;
-    sc.style.transform= `translateX(-50%) rotateZ(${ss}deg) `;
+    hr.style.transform= `translate(0,-50%) rotateZ(${hh+(mm/12)}deg)`;
+    mn.style.transform= `translate(0,-50%) rotateZ(${mm}deg)`;
+    sc.style.transform= `translate(0,-50%) rotateZ(${ss}deg) `;
     //console.log("hey");
 })
 document.getElementById("set").addEventListener("mouseover",startvib);
